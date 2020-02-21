@@ -225,7 +225,7 @@ While related approaches exist, such as LXC\footnote{\href{https://en.wikipedia.
 In doing so, Docker had recognised and validated the importance of one very important thread that had been emerging, namely virtualisation.
 By allowing (one or possibly) multiple applications or services to run concurrently on one host machine without any fear of interference between them, Docker provides an important scalability opportunity.
 Beyond this though, Docker has improved this compartmentalisation by accessing the host system---generally Linux---through a much thinner and smaller shim than a full operating system emulation or virtualisation.
-This containerisation, also called operating-system-level virtualisation \citep{wikipedia_contributors_os-level_2020},
+This containerisation, also called operating-system-level virtualisation \citep{wikipedia_contributors_os-level_2020}, 
 makes efficient use of operating system resources \citep{felter_updated_2015} and allows another order of magnitude in terms of scalability of deployment \citep[cf.][]{datadog_8_2018} because, while a container typically runs one process, virtualisation may run whole operating systems at a larger footprint.
 This makes for more efficient use of system resources \citep{felter_updated_2015} and allowed another order of magnitude in terms of scalability of deployment \citep[cf.][]{datadog_8_2018}.
 While Docker makes use of Linux kernel features, it has become important enough that some required aspects of running Docker have been added to other operating systems so that those systems can more efficiently support Docker \citep{microsoft_linux_2019}.
@@ -293,15 +293,15 @@ package_functionalities <- tribble(
   "dockermachine", c("install", "execute", "cloud", "interact")
 )
 
-tab <-
+tab <- 
   full_join(
-  functionalities %>% crossing(package = package_functionalities$package),
+  functionalities %>% crossing(package = package_functionalities$package), 
   package_functionalities %>% unnest(id) %>% mutate(check = "\\checkmark"),#\u2714 # \\checkmark
   by = c("id", "package")
 ) %>%
-  mutate(check = ifelse(is.na(check), "", check)) %>%
-  spread(package, check) %>%
-  slice(match(functionalities$id, id)) %>%
+  mutate(check = ifelse(is.na(check), "", check)) %>% 
+  spread(package, check) %>% 
+  slice(match(functionalities$id, id)) %>% 
   select(-id)
 
 # insert table
